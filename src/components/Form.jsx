@@ -49,53 +49,60 @@ const Form = ({ onSiteAdded }) => {
         };
     }
     return (
-        <div>
-            <div className="m-auto border-2 border-blue-300 bg-white rounded-lg shadow-emerald-400 shadow-lg p-8 w-[50vw]">
-                <h1 className='text-2xl font-bold text-center mb-20'>Add a new site</h1>
-                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-1">
-                    <div className="lab">
-                        <span className='text-red-500'>*</span><label className='form-lab' htmlFor="name">Name of the site</label>
-                    </div>
-
-                    <div className="in">
+        <div className="py-8">
+            <div className="mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-2xl dark:shadow-gray-900 p-8 w-full max-w-lg border border-blue-100 dark:border-gray-700">
+                <h1 className='text-4xl font-bold text-center mb-2 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent'>Password Manager</h1>
+                <p className='text-center text-gray-600 dark:text-gray-400 mb-8'>Add a new site securely</p>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <div>
+                        <label className='form-lab flex items-center text-sm font-semibold mb-2' htmlFor="name">
+                            <span className='text-red-500 mr-1'>*</span>Site Name
+                        </label>
                         <input
-                            className='form-in'
+                            className='form-in w-full px-4 py-3 rounded-lg border-2 border-blue-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400'
                             type="text"
                             id="name"
-                            {...register("name", { required: { value: true, message: "Site name cannot be blanked" } })}
+                            placeholder="e.g., Gmail, Netflix"
+                            {...register("name", { required: { value: true, message: "Site name cannot be empty" } })}
                         />
-                        {errors.name && <div className="error">{errors.name.message}</div>}
+                        {errors.name && <div className="error mt-1 text-sm">{errors.name.message}</div>}
                     </div>
-                    <div className="lab">
-                        <span className='text-red-500'>*</span><label className='form-lab' htmlFor="username">Username</label>
-                    </div>
-                    <div className="in">
+
+                    <div>
+                        <label className='form-lab flex items-center text-sm font-semibold mb-2' htmlFor="username">
+                            <span className='text-red-500 mr-1'>*</span>Username/Email
+                        </label>
                         <input
-                            className='form-in'
+                            className='form-in w-full px-4 py-3 rounded-lg border-2 border-blue-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400'
                             type="text"
                             id="username"
-                            {...register("username", { required: { value: true, message: "Username cannot be blanked" } })}
+                            placeholder="Your username or email"
+                            {...register("username", { required: { value: true, message: "Username cannot be empty" } })}
                         />
-                        {errors.username && <div className="error">{errors.username.message}</div>}
+                        {errors.username && <div className="error mt-1 text-sm">{errors.username.message}</div>}
                     </div>
-                    <div className="lab">
-                        <span className='text-red-500'>*</span><label className='form-lab' htmlFor="password">Password</label>
-                    </div>
-                    <div className="in">
+
+                    <div>
+                        <label className='form-lab flex items-center text-sm font-semibold mb-2' htmlFor="password">
+                            <span className='text-red-500 mr-1'>*</span>Password
+                        </label>
                         <input
-                            className='form-in'
+                            className='form-in w-full px-4 py-3 rounded-lg border-2 border-blue-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400'
                             type="password"
                             id="password"
-                            {...register("password", { required: { value: true, message: "Password cannot be blanked" } })}
+                            placeholder="Your secure password"
+                            {...register("password", { required: { value: true, message: "Password cannot be empty" } })}
                         />
-                        {errors.password && <div className="error">{errors.password.message}</div>}
+                        {errors.password && <div className="error mt-1 text-sm">{errors.password.message}</div>}
                     </div>
-                    <input
-                        className={(isValid && !isSubmitting) ? 'form-s' : 'form-sb'}
+
+                    <button
+                        className={(isValid && !isSubmitting) ? 'form-s w-full py-3 px-6 mt-4 rounded-lg font-bold text-white transition-all duration-200 transform hover:scale-105' : 'form-sb w-full py-3 px-6 mt-4 rounded-lg font-bold text-white transition-all'}
                         type="submit"
-                        value="Add site"
                         disabled={!isValid || isSubmitting}
-                    />
+                    >
+                        {isSubmitting ? 'Adding...' : '+ Add Site'}
+                    </button>
 
                 </form>
             </div>

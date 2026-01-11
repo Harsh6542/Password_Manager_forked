@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+html.dark {
+  @apply bg-gray-900 text-gray-100 color-scheme-dark;
+}
+
+html.dark body {
+  @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100;
+}
+
+html.dark .border-blue-300 {
+  @apply border-blue-700;
+}
+
+html.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+html.dark .shadow-emerald-400 {
+  @apply shadow-emerald-900;
+}
+
+html.dark input::placeholder {
+  @apply text-gray-500;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-400 dark:bg-blue-600 rounded-full hover:bg-blue-500 dark:hover:bg-blue-700;
+}
+
+/* Global transitions */
+* {
+  @apply transition-colors duration-200;
+}

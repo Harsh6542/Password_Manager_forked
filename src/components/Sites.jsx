@@ -138,21 +138,33 @@ const decrypt = async(index) => {
   }
 
   if (loading) {
-    return <div className="text-center mt-10 text-lg font-semibold">Loading...</div>;
+    return <div className="text-center mt-16 text-lg font-semibold text-gray-600 dark:text-gray-400">
+      <div className="inline-block animate-spin text-4xl mb-4">⏳</div>
+      <p>Loading your passwords...</p>
+    </div>;
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <div className="mt-6 heading mb-4">
-        <h1 className="mt-5 text-2xl font-bold text-center mb-4 bg-blue-100 p-4 rounded-lg shadow">Saved Sites</h1></div>
-      <div className="titles grid grid-cols-4 gap-4 mb-4 border-b-3 border-black pb-2">
-        <div className="title-div">Site Name</div>
-        <div className="title-div">Username</div>
-        <div className="title-div">Password</div>
-        <div className="title-div">Actions</div>
+    <div className="py-8">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-center mb-2 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">Saved Sites</h1>
+        <p className="text-center text-gray-600 dark:text-gray-400">Manage your saved passwords</p>
       </div>
-      <div className="main-sites">
-        {sites.map((site, index) => (
+      
+      {sites.length === 0 ? (
+        <div className="text-center py-12 text-gray-600 dark:text-gray-400">
+          <p className="text-lg">No sites saved yet. Add one to get started!</p>
+        </div>
+      ) : (
+        <>
+          <div className="titles grid grid-cols-4 gap-4 mb-4 pb-4 border-b-2 border-blue-300 dark:border-blue-800 sticky top-0 bg-white dark:bg-gray-800 bg-opacity-95 dark:bg-opacity-95 backdrop-blur">
+            <div className="title-div">Site Name</div>
+            <div className="title-div">Username</div>
+            <div className="title-div">Password</div>
+            <div className="title-div">Actions</div>
+          </div>
+          <div className="main-sites space-y-2">
+            {sites.map((site, index) => (
           <div key={site._id}>
             {toEdit === index && (
               <form onSubmit={handleSubmit(handleOnSubmit)} className="site-cards">
@@ -286,7 +298,9 @@ const decrypt = async(index) => {
 
           </div>
         ))}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
